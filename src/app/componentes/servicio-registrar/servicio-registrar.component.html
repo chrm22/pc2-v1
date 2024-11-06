@@ -1,0 +1,96 @@
+<app-navbar></app-navbar>
+<mat-card class="example-card">
+  <mat-card-title>Formulario de Proveedor</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="servicioForm" class="form-container">
+
+      <!--NOMBRE SERVICIO-->
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombreServicio" placeholder="Ingrese el nombre del servicio" />
+
+        <mat-error *ngIf="servicioForm.get('nombreServicio')?.hasError('required')">
+          El nombre del servicio es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <!--OBJETIVO SERVICIO-->
+      <mat-form-field appearance="fill">
+        <mat-label>Objetivo</mat-label>
+        <input matInput formControlName="objetivoServicio" placeholder="Ingrese el objetivo del servicio" />
+
+        <mat-error *ngIf="servicioForm.get('objetivoServicio')?.hasError('required')">
+          El objetivo del servicio es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <!--FECHA SERVICIO-->
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de Servicio</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaServicio"
+               placeholder="Seleccione la fecha del servicio" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+        <mat-error *ngIf="servicioForm.get('fechaServicio')?.hasError('required')">
+          La fecha es requerida
+        </mat-error>
+        <mat-error *ngIf="servicioForm.get('fechaServicio')?.hasError('fechaFutura')">
+          La fecha debe ser igual o anterior a hoy
+        </mat-error>
+
+      </mat-form-field>
+
+      <!--PRECIO SERVICIO-->
+      <mat-form-field appearance="fill">
+        <mat-label>Precio</mat-label>
+        <input matInput formControlName="precioServicio" placeholder="Ingrese el precio del servicio" />
+
+        <mat-error *ngIf="servicioForm.get('precioServicio')?.hasError('required')">
+          El precio es requerido
+        </mat-error>
+        <mat-error *ngIf="servicioForm.get('precioServicio')?.hasError('pattern')">
+          El precio debe ser un valor numérico con no más de 2 cifras decimales
+        </mat-error>
+        <mat-error *ngIf="servicioForm.get('precioServicio')?.hasError('min') ||
+        servicioForm.get('precioServicio')?.hasError('max')">
+          El precio debe ser un valor entre 70 y 500
+        </mat-error>
+
+      </mat-form-field>
+
+      <!--TIPO SERVICIO-->
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de servicio</mat-label>
+        <mat-select formControlName="tipoServicio">
+          <mat-option *ngFor="let tipo of listaTipos" [value]="tipo.value">
+            {{ tipo.viewValue }}
+          </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="servicioForm.get('tipoServicio')?.hasError('required')">
+          El tipo de servicio es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <!--FORMA ENTREGA-->
+      <mat-form-field appearance="fill">
+        <mat-label>Forma de entrega</mat-label>
+        <mat-select formControlName="formaEntrega">
+          <mat-option *ngFor="let forma of listaFormas" [value]="forma.value">
+            {{ forma.viewValue }}
+          </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="servicioForm.get('formaEntrega')?.hasError('required')">
+          La forma de entrega es requerida
+        </mat-error>
+      </mat-form-field>
+
+
+
+      <button style="margin-top: 30px" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Registrar servicio</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+

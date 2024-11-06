@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="clase-1">
+
+    <span style="text-align: right">Mi aplicación</span>
+
+    <div>
+      <button mat-raised-button [routerLink]="'/'" color="warn">
+        <mat-icon>home</mat-icon>
+        Home
+      </button>
+      <button mat-raised-button [routerLink]="'/registrar-servicio'">
+        Registrar servicio
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-raised-button [routerLink]="'/listar-servicios'">
+        Listar servicios
+        <mat-icon>list</mat-icon>
+      </button>
+    </div>
+
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -12,7 +12,7 @@ import {MatIcon} from '@angular/material/icon';
     MatButton,
     RouterLink,
     MatToolbarRow,
-    MatIcon
+    MatIcon,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
